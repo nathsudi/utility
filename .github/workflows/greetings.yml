@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/first-interaction@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: |
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: |
             👋 Hello! Thank you for opening your first issue in the utility scripts repository!
             
             We appreciate your contribution to making this project better. A maintainer will review your issue soon.
@@ -28,7 +28,7 @@ jobs:
             - You've provided any relevant context or examples
             
             Feel free to explore our [Contributing Guide](https://github.com/nathsudi/utility/blob/main/CONTRIBUTING.md) for more information on how to get involved!
-          pr-message: |
+          pr_message: |
             🎉 Congratulations on opening your first pull request in the utility scripts repository!
             
             Thank you for contributing! Here are a few things to keep in mind:
