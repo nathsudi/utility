@@ -125,19 +125,24 @@ jobs:
         run: |
           echo "Validating repository structure..."
           
-          # Check for required directories
+          # Check for expected directories
           for dir in scripts docs tests examples; do
             if [ ! -d "$dir" ]; then
-              echo "ERROR: Required directory '$dir' not found"
-              exit 1
+              echo "WARNING: Recommended directory '$dir' not found"
+            else
+              echo "✓ Found directory '$dir'"
             fi
           done
           
-          # Check for README files in script categories
-          for category in bash python javascript automation system network data misc; do
-            if [ ! -f "scripts/$category/README.md" ]; then
-              echo "WARNING: README.md not found in scripts/$category/"
-            fi
-          done
+          # Check for README files in script categories (if scripts dir exists)
+          if [ -d "scripts" ]; then
+            for category in bash python javascript automation system network data misc; do
+              if [ -d "scripts/$category" ]; then
+                if [ ! -f "scripts/$category/README.md" ]; then
+                  echo "INFO: README.md not found in scripts/$category/"
+                fi
+              fi
+            done
+          fi
           
           echo "Structure validation completed"

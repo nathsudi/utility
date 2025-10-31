@@ -27,7 +27,7 @@ jobs:
             - You've checked if a similar issue already exists
             - You've provided any relevant context or examples
             
-            Feel free to explore our [Contributing Guide](../CONTRIBUTING.md) for more information on how to get involved!
+            Feel free to explore our [Contributing Guide](https://github.com/nathsudi/utility/blob/main/CONTRIBUTING.md) for more information on how to get involved!
           pr-message: |
             🎉 Congratulations on opening your first pull request in the utility scripts repository!
             
@@ -39,4 +39,4 @@ jobs:
             
             A maintainer will review your PR shortly. Please be patient and responsive to any feedback.
             
-            Check out our [Contributing Guide](../CONTRIBUTING.md) for more details!
+            Check out our [Contributing Guide](https://github.com/nathsudi/utility/blob/main/CONTRIBUTING.md) for more details!
