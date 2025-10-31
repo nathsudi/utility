@@ -2,6 +2,9 @@
 
 # Simple script to fetch kubeconfig from orchestration platform API
 
+# Sample configuration file name
+SAMPLE_CONFIG_FILE="get-kubeconfig.env"
+
 # Source environment variables from /etc/environment
 if [ -f /etc/environment ]; then
     set -a  # Automatically export all variables
@@ -51,6 +54,7 @@ get_jwt_token() {
 
     if [ "$JWT_TOKEN" == "null" ] || [ -z "$JWT_TOKEN" ]; then
         echo "Error: Failed to get JWT token. Check credentials and cluster FQDN."
+        echo "Tip: Edit ${SAMPLE_CONFIG_FILE} with your configuration and source it before running this script."
         exit 1
     fi
     
@@ -90,6 +94,19 @@ test_kubectl() {
 
 # Main function
 main() {
+    # Check for help flag
+    if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "help" ]; then
+        echo "Kubeconfig Retrieval Script"
+        echo "=========================="
+        echo ""
+        echo "Usage: ./get-kubeconfig.sh [--help|-h|help]"
+        echo "       source ${SAMPLE_CONFIG_FILE} && ./get-kubeconfig.sh"
+        echo ""
+        echo "Configuration:"
+        echo "Edit ${SAMPLE_CONFIG_FILE} with your values, then source it before running this script."
+        exit 0
+    fi
+    
     echo "Starting kubeconfig retrieval for cluster: $CLUSTER_NAME in project: $PROJECT_NAME"
     echo "============================================================================"
     
@@ -134,6 +151,8 @@ main() {
     echo "Process completed successfully!"
     echo "kubectl is now ready to use globally. You can run 'kubectl cluster-info' from any directory."
     echo "Note: For new terminal sessions, the configuration will be automatically loaded."
+    echo ""
+    echo "Tip: For easier reuse, edit ${SAMPLE_CONFIG_FILE} with your settings and source it before running this script."
 }
 
 # Run main function
