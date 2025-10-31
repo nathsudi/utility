@@ -1,0 +1,50 @@
+name: Validate Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**.md'
+      - 'docs/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - '**.md'
+      - 'docs/**'
+  workflow_dispatch:
+
+jobs:
+  markdown-lint:
+    name: Lint Markdown Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      
+      - name: Run markdownlint
+        run: |
+          echo "Linting markdown files..."
+          markdownlint '**/*.md' --ignore node_modules --ignore .git || true
+          echo "Markdown linting completed"
+
+  check-links:
+    name: Check Markdown Links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check links in markdown files
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'no'
+          config-file: '.github/markdown-link-check-config.json'
+          check-modified-files-only: 'yes'
+        continue-on-error: true

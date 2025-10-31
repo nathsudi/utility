@@ -1,0 +1,43 @@
+bash:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/bash/**/*'
+    - any-glob-to-any-file: 'examples/bash-template.sh'
+
+python:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/python/**/*'
+    - any-glob-to-any-file: 'examples/python-template.py'
+
+javascript:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/javascript/**/*'
+    - any-glob-to-any-file: 'examples/javascript-template.js'
+
+automation:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/automation/**/*'
+
+system:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/system/**/*'
+
+network:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/network/**/*'
+
+data:
+  - changed-files:
+    - any-glob-to-any-file: 'scripts/data/**/*'
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: 'docs/**/*'
+    - any-glob-to-any-file: '**/*.md'
+
+tests:
+  - changed-files:
+    - any-glob-to-any-file: 'tests/**/*'
+
+github-actions:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**/*'
