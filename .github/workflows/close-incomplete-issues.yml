@@ -1,0 +1,28 @@
+name: Close Incomplete Issues
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  close-incomplete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          only-labels: 'needs-more-info'
+          days-before-stale: 7
+          days-before-close: 3
+          stale-issue-message: |
+            This issue is marked as needing more information and has not received a response.
+            It will be closed in 3 days if no additional information is provided.
+          close-issue-message: |
+            This issue has been closed due to lack of additional information.
+            If you can provide more details, please feel free to reopen this issue.
+          stale-issue-label: 'stale'
+          operations-per-run: 30
