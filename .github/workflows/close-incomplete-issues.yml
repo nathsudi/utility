@@ -12,7 +12,7 @@ jobs:
   close-incomplete:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@v10
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           only-labels: 'needs-more-info'
