@@ -15,7 +15,7 @@ jobs:
     name: Lint Bash Scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Install shellcheck
         run: |
@@ -33,7 +33,7 @@ jobs:
     name: Lint Python Scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -56,7 +56,7 @@ jobs:
     name: Lint JavaScript Scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint-bash, lint-python, lint-javascript]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -122,7 +122,7 @@ jobs:
     name: Validate Repository Structure
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Check repository structure
         run: |
