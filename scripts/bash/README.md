@@ -50,6 +50,9 @@ source ../config.env
 ### clean_docker_logs.sh
 Cleans Docker container logs.
 
+**Requirements:**
+- `docker` - Docker CLI must be installed and running
+- No required environment variables
 **Usage:**
 ```bash
 ./clean_docker_logs.sh
