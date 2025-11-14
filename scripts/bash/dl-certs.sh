@@ -42,16 +42,13 @@ main() {
     echo "============================================================================"
 
     # Remove existing certificate files if they exist
-    if [ -f "db.der" ]; then
-        echo "Removing existing db.der..."
-        rm -f db.der
-    fi
-
-    if [ -f "Full_server.crt" ]; then
-        echo "Removing existing Full_server.crt..."
-        rm -f Full_server.crt
-    fi
-
+    CERT_FILES=("db.der" "Full_server.crt")
+    for cert_file in "${CERT_FILES[@]}"; do
+        if [ -f "$cert_file" ]; then
+            echo "Removing existing $cert_file..."
+            rm -f "$cert_file"
+        fi
+    done
     echo "Downloading certificates..."
 
     # Download certificates separately and check each
