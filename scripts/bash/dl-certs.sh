@@ -54,31 +54,35 @@ main() {
 
     echo "Downloading certificates..."
 
-    # Download certificates
-    wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/db.der --no-check-certificate --no-proxy \
-    && wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy
+    # Download certificates separately and check each
+    wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/db.der --no-check-certificate --no-proxy
+    DB_DER_STATUS=$?
+    wget https://tinkerbell-nginx.${CLUSTER_FQDN}/tink-stack/keys/Full_server.crt --no-check-certificate --no-proxy
+    FULL_SERVER_CRT_STATUS=$?
 
-    # Check if downloads were successful
-    if [ $? -eq 0 ]; then
-        echo "============================================================================"
+    echo "============================================================================"
+    echo "Files downloaded:"
+    DOWNLOAD_FAILED=0
+    if [ $DB_DER_STATUS -eq 0 ] && [ -f "db.der" ]; then
+        ls -lh db.der
+    else
+        echo "Error: db.der was not downloaded successfully."
+        DOWNLOAD_FAILED=1
+    fi
+    if [ $FULL_SERVER_CRT_STATUS -eq 0 ] && [ -f "Full_server.crt" ]; then
+        ls -lh Full_server.crt
+    else
+        echo "Error: Full_server.crt was not downloaded successfully."
+        DOWNLOAD_FAILED=1
+    fi
+    echo ""
+    echo "Tip: For easier reuse, edit ${SAMPLE_CONFIG_FILE} with your settings and source it before running this script."
+
+    if [ $DOWNLOAD_FAILED -eq 0 ]; then
         echo "Certificates downloaded successfully!"
-        echo ""
-        echo "Files downloaded:"
-        if [ -f "db.der" ]; then
-            ls -lh db.der
-        else
-            echo "Warning: db.der was not downloaded."
-        fi
-        if [ -f "Full_server.crt" ]; then
-            ls -lh Full_server.crt
-        else
-            echo "Warning: Full_server.crt was not downloaded."
-        fi
-        echo ""
-        echo "Tip: For easier reuse, edit ${SAMPLE_CONFIG_FILE} with your settings and source it before running this script."
     else
         echo "============================================================================"
-        echo "Error: Failed to download certificates"
+        echo "Error: One or more certificates failed to download."
         exit 1
     fi
 }
