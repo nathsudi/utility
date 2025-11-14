@@ -30,33 +30,8 @@ cd utility
 # Configure environment variables
 vim scripts/config.env
 
-# Run a script
+# Run a script (see scripts/bash/README.md for available scripts)
 source scripts/config.env && ./scripts/bash/get-kubeconfig.sh
-```
-
-## � Available Scripts
-
-### Bash Scripts
-
-#### **get-kubeconfig.sh**
-Fetch kubeconfig from orchestration platform API via Keycloak authentication.
-
-```bash
-source scripts/config.env && ./scripts/bash/get-kubeconfig.sh
-```
-
-#### **dl-certs.sh**
-Download certificates from Tinkerbell nginx server.
-
-```bash
-source scripts/config.env && ./scripts/bash/dl-certs.sh
-```
-
-#### **clean_docker_logs.sh**
-Clean up Docker container logs to free disk space.
-
-```bash
-./scripts/bash/clean_docker_logs.sh
 ```
 
 ## ⚙️ Configuration
@@ -93,9 +68,9 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 2. Add help flag support (`--help`, `-h`)
 3. Use `scripts/config.env` for shared configuration
 4. Include clear comments and error handling
-5. Update README with script description
+5. Update the category README with script description
 
-## � Tips
+## 💡 Tips
 
 - All bash scripts support `--help` flag for usage information
 - Scripts read from `scripts/config.env` or `/etc/environment`
