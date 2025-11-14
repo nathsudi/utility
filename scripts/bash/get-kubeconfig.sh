@@ -2,8 +2,8 @@
 
 # Simple script to fetch kubeconfig from orchestration platform API
 
-# Sample configuration file name
-SAMPLE_CONFIG_FILE="get-kubeconfig.env"
+# Sample configuration file name (relative to scripts directory)
+SAMPLE_CONFIG_FILE="../config.env"
 
 # Source environment variables from /etc/environment
 if [ -f /etc/environment ]; then
