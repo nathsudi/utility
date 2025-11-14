@@ -1,112 +1,116 @@
-# Utility Scripts Repository
+# 🛠️ Utility Scripts
 
-A collection of utility scripts organized by category to help with various development and system administration tasks.
+A curated collection of utility scripts for development and system administration tasks.
 
-## 📁 Repository Structure
+## 📁 Structure
 
 ```
 utility/
-├── scripts/              # Main scripts directory
+├── scripts/
+│   ├── config.env       # Shared configuration file
 │   ├── bash/            # Bash shell scripts
-│   ├── python/          # Python utility scripts
-│   ├── javascript/      # JavaScript/Node.js scripts
-│   ├── automation/      # Automation scripts
-│   ├── system/          # System administration scripts
-│   ├── network/         # Network-related utilities
-│   ├── data/            # Data processing scripts
-│   └── misc/            # Miscellaneous utilities
+│   ├── python/          # Python utilities
+│   ├── automation/      # Workflow automation
+│   ├── system/          # System administration
+│   ├── network/         # Network tools
+│   ├── data/            # Data processing
+│   └── misc/            # Other utilities
 ├── docs/                # Documentation
 ├── tests/               # Test scripts
-└── examples/            # Example usage and templates
-
+└── examples/            # Usage templates
 ```
 
 ## 🚀 Quick Start
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/nathsudi/utility.git
-   cd utility
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/nathsudi/utility.git
+cd utility
 
-2. **Browse available scripts:**
-   Navigate to the appropriate category under `scripts/` directory.
+# Configure environment variables
+vim scripts/config.env
 
-3. **Make scripts executable:**
-   ```bash
-   chmod +x scripts/bash/script-name.sh
-   ```
+# Run a script
+source scripts/config.env && ./scripts/bash/get-kubeconfig.sh
+```
 
-4. **Run a script:**
-   ```bash
-   ./scripts/bash/script-name.sh
-   ```
+## � Available Scripts
 
-## 📚 Categories
+### Bash Scripts
 
-### Bash Scripts (`scripts/bash/`)
-Shell scripts for Unix/Linux systems, automation, and system tasks.
+#### **get-kubeconfig.sh**
+Fetch kubeconfig from orchestration platform API via Keycloak authentication.
 
-### Python Scripts (`scripts/python/`)
-Python utilities for data processing, automation, and system management.
+```bash
+source scripts/config.env && ./scripts/bash/get-kubeconfig.sh
+```
 
-### JavaScript Scripts (`scripts/javascript/`)
-Node.js scripts for web-related tasks and automation.
+#### **dl-certs.sh**
+Download certificates from Tinkerbell nginx server.
 
-### Automation (`scripts/automation/`)
-Scripts focused on automating repetitive tasks and workflows.
+```bash
+source scripts/config.env && ./scripts/bash/dl-certs.sh
+```
 
-### System Scripts (`scripts/system/`)
-System administration and maintenance utilities.
+#### **clean_docker_logs.sh**
+Clean up Docker container logs to free disk space.
 
-### Network Scripts (`scripts/network/`)
-Network diagnostics, monitoring, and management tools.
+```bash
+./scripts/bash/clean_docker_logs.sh
+```
 
-### Data Scripts (`scripts/data/`)
-Data processing, transformation, and analysis utilities.
+## ⚙️ Configuration
 
-### Miscellaneous (`scripts/misc/`)
-Other utility scripts that don't fit into specific categories.
+Edit `scripts/config.env` with your values:
+
+```bash
+export CLUSTER_FQDN="your-cluster.domain.com"
+export PROJECT_NAME="your-project"
+export CLUSTER_NAME="your-cluster"
+export USERNAME="your-username"
+export PASSWORD="your-password"
+```
+
+Then source the config before running scripts:
+```bash
+source scripts/config.env && ./scripts/bash/<script-name>.sh
+```
 
 ## 📖 Documentation
 
-Detailed documentation for scripts and usage guidelines can be found in the `docs/` directory.
-
-## 🧪 Testing
-
-Test scripts are located in the `tests/` directory. Run tests before using scripts in production environments.
+- **[Getting Started](docs/getting-started.md)** - Setup and basic usage
+- **[Best Practices](docs/best-practices.md)** - Coding standards and guidelines
+- **[Testing Guide](docs/testing-guide.md)** - How to test scripts
+- **[GitHub Workflows](docs/github-workflows.md)** - CI/CD and automation
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-### Adding a New Script
+### Adding a Script
 
-1. Place your script in the appropriate category under `scripts/`
-2. Add a README.md in the same directory if it doesn't exist
-3. Include clear comments and usage instructions in your script
-4. Add tests if applicable
-5. Update documentation
+1. Place script in appropriate category under `scripts/`
+2. Add help flag support (`--help`, `-h`)
+3. Use `scripts/config.env` for shared configuration
+4. Include clear comments and error handling
+5. Update README with script description
 
-## 📝 Script Template
+## � Tips
 
-Each script should include:
-- Header comment with description and author
-- Usage instructions
-- Required dependencies
-- Example usage
-
-See `examples/` directory for templates.
+- All bash scripts support `--help` flag for usage information
+- Scripts read from `scripts/config.env` or `/etc/environment`
+- Use absolute paths when sourcing config from subdirectories
+- Test scripts in non-production environments first
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 👤 Author
 
 **Nath Sudi**
 - GitHub: [@nathsudi](https://github.com/nathsudi)
 
-## ⭐ Support
+---
 
-If you find this repository helpful, please give it a star!
+⭐ **Star this repo if you find it helpful!**
