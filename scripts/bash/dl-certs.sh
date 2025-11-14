@@ -60,18 +60,18 @@ main() {
     echo "============================================================================"
     echo "Files downloaded:"
     DOWNLOAD_FAILED=0
-    if [ $DB_DER_STATUS -eq 0 ] && [ -f "db.der" ]; then
-        ls -lh db.der
-    else
-        echo "Error: db.der was not downloaded successfully."
-        DOWNLOAD_FAILED=1
-    fi
-    if [ $FULL_SERVER_CRT_STATUS -eq 0 ] && [ -f "Full_server.crt" ]; then
-        ls -lh Full_server.crt
-    else
-        echo "Error: Full_server.crt was not downloaded successfully."
-        DOWNLOAD_FAILED=1
-    fi
+    validate_download() {
+        local filename="$1"
+        local status="$2"
+        if [ "$status" -eq 0 ] && [ -f "$filename" ]; then
+            ls -lh "$filename"
+        else
+            echo "Error: $filename was not downloaded successfully."
+            DOWNLOAD_FAILED=1
+        fi
+    }
+    validate_download "db.der" "$DB_DER_STATUS"
+    validate_download "Full_server.crt" "$FULL_SERVER_CRT_STATUS"
     echo ""
     echo "Tip: For easier reuse, edit ${SAMPLE_CONFIG_FILE} with your settings and source it before running this script."
 
