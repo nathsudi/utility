@@ -64,7 +64,16 @@ main() {
         echo "Certificates downloaded successfully!"
         echo ""
         echo "Files downloaded:"
-        ls -lh db.der Full_server.crt 2>/dev/null || echo "Warning: Some files may not have been downloaded"
+        if [ -f "db.der" ]; then
+            ls -lh db.der
+        else
+            echo "Warning: db.der was not downloaded."
+        fi
+        if [ -f "Full_server.crt" ]; then
+            ls -lh Full_server.crt
+        else
+            echo "Warning: Full_server.crt was not downloaded."
+        fi
         echo ""
         echo "Tip: For easier reuse, edit ${SAMPLE_CONFIG_FILE} with your settings and source it before running this script."
     else
